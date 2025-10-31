@@ -97,8 +97,11 @@ for i in range(1_000_000_000):
 - We move in the **opposite direction** (steepest decrease)
 
 **Gradient Descent Formula**:
+
 $$
+
 w_{new} = w_{old} - \alpha \cdot \frac{\partial L}{\partial w}
+
 $$
 
 **Breaking down EVERY symbol:**
@@ -188,8 +191,11 @@ Where:
 **Geometric Interpretation**: Slope of the tangent line
 
 **Notation**:
+
 $$
+
 \frac{df}{dx} = f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
+
 $$
 
 **Breaking down EVERY symbol:**
@@ -286,23 +292,35 @@ At x=5: f'(5) = 10 (slope is 10)
 ### 2.3 Derivative Rules
 
 **Sum Rule**:
+
 $$
+
 (f + g)' = f' + g'
+
 $$
 
 **Product Rule**:
+
 $$
+
 (f \cdot g)' = f' \cdot g + f \cdot g'
+
 $$
 
 **Quotient Rule**:
+
 $$
+
 \left(\frac{f}{g}\right)' = \frac{f' \cdot g - f \cdot g'}{g^2}
+
 $$
 
 **Chain Rule** (most important for backprop!):
+
 $$
+
 \frac{d}{dx}f(g(x)) = f'(g(x)) \cdot g'(x)
+
 $$
 
 **Breaking down EVERY symbol:**
@@ -331,8 +349,11 @@ $$
   - Example: If $g(x) = 3x + 1$ then $g'(x) = 3$
 
 **Alternative notation (Leibniz notation):**
+
 $$
+
 \frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}
+
 $$
 
 Where:
@@ -380,13 +401,19 @@ Step 4: Multiply: $\frac{d}{dx}f(g(x))|_{x=2} = 54.6 \times 4 = 218.4$
 **Why chain rule is crucial for backpropagation:**
 
 Neural networks are giant compositions of functions:
+
 $$
+
 y = f_4(f_3(f_2(f_1(x))))
+
 $$
 
 To compute $\frac{dy}{dx}$, we use chain rule repeatedly:
+
 $$
+
 \frac{dy}{dx} = \frac{dy}{df_4} \cdot \frac{df_4}{df_3} \cdot \frac{df_3}{df_2} \cdot \frac{df_2}{df_1} \cdot \frac{df_1}{dx}
+
 $$
 
 This is exactly what backpropagation does!
@@ -408,8 +435,11 @@ f(x, y) = x² + 3xy + y²
 ```
 
 **Gradient** = Vector of all partial derivatives:
+
 $$
+
 \nabla f = \begin{bmatrix} \frac{\partial f}{\partial x} \\ \frac{\partial f}{\partial y} \\ \frac{\partial f}{\partial z} \end{bmatrix}
+
 $$
 
 ---
@@ -421,7 +451,9 @@ $$
 Neural networks are **compositions of functions**:
 
 $$
+
 y = f_4(f_3(f_2(f_1(x))))
+
 $$
 
 To compute $\frac{dy}{dx}$, we need the **chain rule**.
@@ -431,7 +463,9 @@ To compute $\frac{dy}{dx}$, we need the **chain rule**.
 For composite function $y = f(g(x))$:
 
 $$
+
 \frac{dy}{dx} = \frac{dy}{dg} \cdot \frac{dg}{dx}
+
 $$
 
 **Example**:
@@ -453,7 +487,9 @@ dy/dx = dy/dg · dg/dx
 For $z = f(x, y)$ where $x = g(t)$ and $y = h(t)$:
 
 $$
+
 \frac{dz}{dt} = \frac{\partial z}{\partial x} \cdot \frac{dx}{dt} + \frac{\partial z}{\partial y} \cdot \frac{dy}{dt}
+
 $$
 
 **Neural Network Example**:
@@ -473,19 +509,26 @@ For matrix operations (like neural networks):
 **Matrix-Vector Multiplication**: $z = Wx$
 
 $$
+
 \frac{\partial z_i}{\partial W_{jk}} = \begin{cases}
 x_k & \text{if } i = j \\
 0 & \text{otherwise}
 \end{cases}
+
 $$
 
 **Simplified**:
+
 $$
+
 \frac{\partial z}{\partial W} = x^T \quad \text{(outer product)}
+
 $$
 
 $$
+
 \frac{\partial z}{\partial x} = W^T
+
 $$
 
 ---
@@ -650,8 +693,11 @@ b1 -= learning_rate * db1
 **Layer $l$ with ReLU activation**:
 
 **Forward**:
+
 $$
+
 z^{[l]} = W^{[l]} a^{[l-1]} + b^{[l]}
+
 $$
 
 **Breaking down EVERY symbol:**
@@ -684,7 +730,9 @@ $$
 **What this means:** Each neuron computes a weighted sum of previous layer's outputs plus a bias
 
 $$
+
 a^{[l]} = \text{ReLU}(z^{[l]})
+
 $$
 
 **Breaking down:**
@@ -702,8 +750,11 @@ $$
 **Backward**:
 
 1. **Gradient w.r.t. pre-activation**:
+
 $$
+
 \frac{\partial L}{\partial z^{[l]}} = \frac{\partial L}{\partial a^{[l]}} \odot \text{ReLU}'(z^{[l]})
+
 $$
 
 **Breaking down EVERY symbol:**
@@ -731,8 +782,10 @@ $$
   - This "gates" the gradient flow
   
 **Why this works:** Chain rule! 
+
 $$L \to a^{[l]} \to z^{[l]}$$ 
 so 
+
 $$\frac{\partial L}{\partial z^{[l]}} = \frac{\partial L}{\partial a^{[l]}} \cdot \frac{\partial a^{[l]}}{\partial z^{[l]}} = \frac{\partial L}{\partial a^{[l]}} \cdot \text{ReLU}'(z^{[l]})$$
 
 **Concrete example:**
@@ -756,8 +809,11 @@ ReLU'(z^{[l]}) = [[0, 1],    # Mask: 0 where z≤0, 1 where z>0
 where $\odot$ is element-wise multiplication
 
 2. **Gradient w.r.t. weights**:
+
 $$
+
 \frac{\partial L}{\partial W^{[l]}} = \frac{1}{m} \frac{\partial L}{\partial z^{[l]}} (a^{[l-1]})^T
+
 $$
 
 **Breaking down EVERY symbol:**
@@ -786,6 +842,7 @@ $$
 - Matrix multiplication: $(n^{[l]}, m) @ (m, n^{[l-1]}) = (n^{[l]}, n^{[l-1]})$ ✓ Correct shape!
 
 **Why this works:** Weight $W^{[l]}_{ij}$ connects neuron j in layer l-1 to neuron i in layer l. The gradient is:
+
 $$\frac{\partial L}{\partial W^{[l]}_{ij}} = \frac{\partial L}{\partial z^{[l]}_i} \cdot a^{[l-1]}_j$$
 
 Summed over all samples in the batch, then averaged by $\frac{1}{m}$.
@@ -816,8 +873,11 @@ a^{[l-1]} = [[1.0, 2.0],      # Shape: (3, 2) - 3 neurons, 2 samples
 ```
 
 3. **Gradient w.r.t. bias**:
+
 $$
+
 \frac{\partial L}{\partial b^{[l]}} = \frac{1}{m} \sum_i \frac{\partial L}{\partial z^{[l]}_i}
+
 $$
 
 **Breaking down EVERY symbol:**
@@ -855,8 +915,11 @@ $$
 ```
 
 4. **Gradient to previous layer**:
+
 $$
+
 \frac{\partial L}{\partial a^{[l-1]}} = (W^{[l]})^T \frac{\partial L}{\partial z^{[l]}}
+
 $$
 
 **Breaking down EVERY symbol:**
@@ -907,16 +970,24 @@ W^{[l]} = [[0.5, 0.2, 0.1],   # Shape: (2, 3)
 ### 5.5 Special Case: Softmax + Cross-Entropy
 
 **Forward**:
+
 $$
+
 \hat{y} = \text{softmax}(z) = \frac{e^{z_i}}{\sum_j e^{z_j}}
+
 $$
+
 $$
 L = -\sum_i y_i \log(\hat{y}_i)
+
 $$
 
 **Backward** (simplified gradient):
+
 $$
+
 \frac{\partial L}{\partial z} = \hat{y} - y
+
 $$
 
 **Breaking down EVERY symbol:**
@@ -1002,7 +1073,9 @@ This elegant result makes training classification networks very efficient!
 **Compute gradient using ALL training samples**:
 
 $$
+
 W := W - \alpha \cdot \frac{1}{m} \sum_{i=1}^{m} \nabla_W L(x^{(i)}, y^{(i)})
+
 $$
 
 **Pros**:
@@ -1019,7 +1092,9 @@ $$
 **Update weights using ONE sample at a time**:
 
 $$
+
 W := W - \alpha \cdot \nabla_W L(x^{(i)}, y^{(i)})
+
 $$
 
 **Pros**:
@@ -1037,7 +1112,9 @@ $$
 **Best of both worlds: Use batches of size 32-256**:
 
 $$
+
 W := W - \alpha \cdot \frac{1}{b} \sum_{i \in \text{batch}} \nabla_W L(x^{(i)}, y^{(i)})
+
 $$
 
 **Pros**:
@@ -1149,8 +1226,11 @@ dZ = A - Y  # Elegant simplification!
 ### 8.2 Why This Happens
 
 **Chain Rule Multiplication**:
+
 $$
+
 \frac{\partial L}{\partial W^{[1]}} = \frac{\partial L}{\partial z^{[L]}} \cdot \frac{\partial z^{[L]}}{\partial z^{[L-1]}} \cdot ... \cdot \frac{\partial z^{[2]}}{\partial W^{[1]}}
+
 $$
 
 If each term is <1: Product → 0 (vanishing)
@@ -1249,14 +1329,19 @@ print(b.grad)  # 2.0 (∂c/∂b = a)
 **Gradient Checking**: Verify analytical gradients with numerical approximation
 
 $$
+
 \frac{\partial L}{\partial w} \approx \frac{L(w + \epsilon) - L(w - \epsilon)}{2\epsilon}
+
 $$
 
 where $\epsilon = 10^{-7}$
 
 **Relative Error**:
+
 $$
+
 \text{error} = \frac{||\text{grad}_\text{analytical} - \text{grad}_\text{numerical}||}{||\text{grad}_\text{analytical}|| + ||\text{grad}_\text{numerical}||}
+
 $$
 
 Should be < $10^{-7}$ for correct implementation
@@ -1279,12 +1364,15 @@ Should be < $10^{-7}$ for correct implementation
 ### Key Formulas:
 
 **Gradient Descent**:
+
 $$W := W - \alpha \nabla_W L$$
 
 **Chain Rule**:
+
 $$\frac{\partial L}{\partial W^{[l]}} = \frac{\partial L}{\partial a^{[l]}} \cdot \frac{\partial a^{[l]}}{\partial z^{[l]}} \cdot \frac{\partial z^{[l]}}{\partial W^{[l]}}$$
 
 **Softmax + Cross-Entropy Gradient**:
+
 $$\frac{\partial L}{\partial z} = \hat{y} - y$$
 
 ### Next Steps:

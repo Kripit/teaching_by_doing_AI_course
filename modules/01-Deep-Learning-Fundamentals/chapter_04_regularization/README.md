@@ -276,11 +276,15 @@ $$R(w) = \frac{1}{2} \sum_{i} w_i^2 = \frac{1}{2} ||w||_2^2$$
 Say we have 4 weights: $w = [2.0, -1.5, 0.5, -3.0]$
 
 L2 regularization term:
+
 $$R(w) = \frac{1}{2}(2.0^2 + (-1.5)^2 + 0.5^2 + (-3.0)^2)$$
+
 $$R(w) = \frac{1}{2}(4.0 + 2.25 + 0.25 + 9.0)$$
+
 $$R(w) = \frac{1}{2}(15.5) = 7.75$$
 
 If $\lambda = 0.01$:
+
 $$\lambda \cdot R(w) = 0.01 \times 7.75 = 0.0775$$
 
 This gets added to the data loss!
@@ -292,12 +296,15 @@ $$\frac{\partial}{\partial w_i} \left(\frac{\lambda}{2} w_i^2\right) = \lambda w
 **What this means for weight updates:**
 
 Without regularization:
+
 $$w_i := w_i - \eta \frac{\partial L_{data}}{\partial w_i}$$
 
 With L2 regularization:
+
 $$w_i := w_i - \eta \left(\frac{\partial L_{data}}{\partial w_i} + \lambda w_i\right)$$
 
 Rearranging:
+
 $$w_i := w_i(1 - \eta\lambda) - \eta \frac{\partial L_{data}}{\partial w_i}$$
 
 The term $(1 - \eta\lambda)$ **shrinks the weight** every update!
@@ -307,9 +314,11 @@ The term $(1 - \eta\lambda)$ **shrinks the weight** every update!
 Say $w = 5.0$, $\eta = 0.1$, $\lambda = 0.01$, gradient = 0
 
 Without regularization:
+
 $$w_{new} = 5.0 - 0.1 \times 0 = 5.0$$ (no change)
 
 With L2 regularization:
+
 $$w_{new} = 5.0 \times (1 - 0.1 \times 0.01) - 0 = 5.0 \times 0.999 = 4.995$$
 
 Weight shrinks by 0.1% per update → "weight decay"!
@@ -359,7 +368,9 @@ $$R(w) = \sum_{i} |w_i| = ||w||_1$$
 Same weights as before: $w = [2.0, -1.5, 0.5, -3.0]$
 
 L1 regularization term:
+
 $$R(w) = |2.0| + |-1.5| + |0.5| + |-3.0|$$
+
 $$R(w) = 2.0 + 1.5 + 0.5 + 3.0 = 7.0$$
 
 Compare to L2: $R(w) = 7.75$ (L1 is smaller for these weights)
@@ -375,6 +386,7 @@ Where $\text{sign}(w_i) = \begin{cases} +1 & \text{if } w_i > 0 \\ -1 & \text{if
 The gradient is **constant** (±$\lambda$), not proportional to weight size!
 
 Weight update with L1:
+
 $$w_i := w_i - \eta(\frac{\partial L_{data}}{\partial w_i} + \lambda \cdot \text{sign}(w_i))$$
 
 **Concrete example:**
@@ -382,6 +394,7 @@ $$w_i := w_i - \eta(\frac{\partial L_{data}}{\partial w_i} + \lambda \cdot \text
 Say $w = 5.0$, $\eta = 0.1$, $\lambda = 0.01$, gradient = 0
 
 With L1 regularization:
+
 $$w_{new} = 5.0 - 0.1 \times (0 + 0.01 \times 1) = 5.0 - 0.001 = 4.999$$
 
 Weight shrinks by **fixed amount** (0.001), not percentage!
@@ -495,6 +508,7 @@ During testing:
 **Mathematical formulation:**
 
 Training:
+
 $$a^{[l]} = \text{activation}(z^{[l]}) \odot m^{[l]} \cdot \frac{1}{1-p}$$
 
 **Breaking down EVERY symbol:**
@@ -834,20 +848,27 @@ $$X = \begin{bmatrix} 1 \\ 3 \\ 5 \\ 7 \end{bmatrix}$$
 **Step 1: Compute batch statistics**
 
 Batch mean:
+
 $$\mu_B = \frac{1}{4}(1 + 3 + 5 + 7) = \frac{16}{4} = 4$$
 
 Batch variance:
+
 $$\sigma_B^2 = \frac{1}{4}[(1-4)^2 + (3-4)^2 + (5-4)^2 + (7-4)^2]$$
+
 $$= \frac{1}{4}[9 + 1 + 1 + 9] = \frac{20}{4} = 5$$
 
 Standard deviation:
+
 $$\sigma_B = \sqrt{5 + 10^{-5}} \approx 2.236$$
 
 **Step 2: Normalize**
 
 $$\hat{x}_1 = \frac{1 - 4}{2.236} = \frac{-3}{2.236} = -1.342$$
+
 $$\hat{x}_2 = \frac{3 - 4}{2.236} = \frac{-1}{2.236} = -0.447$$
+
 $$\hat{x}_3 = \frac{5 - 4}{2.236} = \frac{1}{2.236} = 0.447$$
+
 $$\hat{x}_4 = \frac{7 - 4}{2.236} = \frac{3}{2.236} = 1.342$$
 
 Check: $\hat{X} = [-1.342, -0.447, 0.447, 1.342]$
@@ -859,8 +880,11 @@ Check: $\hat{X} = [-1.342, -0.447, 0.447, 1.342]$
 Say $\gamma = 2.0$ and $\beta = 1.0$ (learned parameters):
 
 $$y_1 = 2.0 \times (-1.342) + 1.0 = -2.684 + 1.0 = -1.684$$
+
 $$y_2 = 2.0 \times (-0.447) + 1.0 = -0.894 + 1.0 = 0.106$$
+
 $$y_3 = 2.0 \times (0.447) + 1.0 = 0.894 + 1.0 = 1.894$$
+
 $$y_4 = 2.0 \times (1.342) + 1.0 = 2.684 + 1.0 = 3.684$$
 
 Final output: $Y = [-1.684, 0.106, 1.894, 3.684]$
@@ -1281,6 +1305,7 @@ Hard: $y = [0, 0, 1, 0]$ (class 2)
 Soft: $y = [0.025, 0.025, 0.925, 0.025]$ (mostly class 2)
 
 **Formula:**
+
 $$y_{smooth} = (1 - \epsilon) y + \frac{\epsilon}{K}$$
 
 Where:
@@ -1293,6 +1318,7 @@ Where:
 Train on **blended images and labels**:
 
 $$x_{mix} = \lambda x_i + (1-\lambda) x_j$$
+
 $$y_{mix} = \lambda y_i + (1-\lambda) y_j$$
 
 Where $\lambda \sim \text{Beta}(\alpha, \alpha)$, typically $\alpha = 0.2$

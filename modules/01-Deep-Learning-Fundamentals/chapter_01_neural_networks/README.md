@@ -68,9 +68,11 @@ Inputs (x₁, x₂, ..., xₙ) → Weighted Sum + Bias → Activation Function �
 
 **Mathematical Formula**:
 
-$$
-y = f\left(\sum_{i=1}^{n} w_i x_i + b\right) = f(w^T x + b)
-$$
+```
+y = f(Σ(w_i * x_i) + b) = f(w^T * x + b)
+```
+
+Where:
 
 **Let's break down EVERY symbol**:
 
@@ -141,17 +143,17 @@ The **perceptron** is the simplest neural network, invented by Frank Rosenblatt 
 ### 2.2 Perceptron Mathematics
 
 **Step 1: Weighted Sum**
-$$
+```math
 z = \sum_{i=1}^{n} w_i x_i + b = w^T x + b
-$$
+```
 
 **Step 2: Activation (Step Function)**
-$$
+```math
 y = \begin{cases}
 1 & \text{if } z \geq 0 \\
 0 & \text{if } z < 0
 \end{cases}
-$$
+```
 
 **Example**: AND gate
 
@@ -210,9 +212,9 @@ No single straight line can separate this!
 ### 3.1 Why We Need Activation Functions
 
 **Without activation functions**, neural networks would just be:
-$$
+```math
 y = W_3(W_2(W_1 x + b_1) + b_2) + b_3 = W_{combined} x + b_{combined}
-$$
+```
 
 This is just a **linear transformation**! No matter how many layers, it's equivalent to a single-layer linear model.
 
@@ -225,9 +227,9 @@ This is just a **linear transformation**! No matter how many layers, it's equiva
 #### **3.2.1 Sigmoid (Logistic)**
 
 **Formula**:
-$$
+```math
 \sigma(z) = \frac{1}{1 + e^{-z}}
-$$
+```
 
 **Breaking down the formula**:
 - **$\sigma$** = Greek letter "sigma", name for sigmoid function
@@ -270,9 +272,9 @@ $$
 ```
 
 **Derivative** (needed for backpropagation):
-$$
+```math
 \frac{d\sigma}{dz} = \sigma(z) \cdot (1 - \sigma(z))
-$$
+```
 
 **Understanding the derivative**:
 - **$\frac{d\sigma}{dz}$** = "How much does sigmoid change when z changes slightly?"
@@ -306,9 +308,9 @@ $$
 #### **3.2.2 Tanh (Hyperbolic Tangent)**
 
 **Formula**:
-$$
+```math
 \tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}} = \frac{2}{1 + e^{-2z}} - 1
-$$
+```
 
 **Breaking down the formula**:
 - **$\tanh$** = "hyperbolic tangent" (pronounced "tansh" or "tan-h")
@@ -348,9 +350,9 @@ $$
 ```
 
 **Derivative**:
-$$
+```math
 \frac{d\tanh}{dz} = 1 - \tanh^2(z)
-$$
+```
 
 **Understanding the derivative**:
 - **Maximum at z=0**: $\tanh(0) = 0$ → derivative = $1 - 0^2 = 1$ (steepest slope)
@@ -368,12 +370,12 @@ $$
 #### **3.2.3 ReLU (Rectified Linear Unit)**
 
 **Formula**:
-$$
+```math
 \text{ReLU}(z) = \max(0, z) = \begin{cases}
 z & \text{if } z > 0 \\
 0 & \text{if } z \leq 0
 \end{cases}
-$$
+```
 
 **Breaking down the formula**:
 - **ReLU** = "Rectified Linear Unit" (rectified = corrected/straightened)
@@ -420,12 +422,12 @@ $$
 ```
 
 **Derivative**:
-$$
+```math
 \frac{d\text{ReLU}}{dz} = \begin{cases}
 1 & \text{if } z > 0 \\
 0 & \text{if } z \leq 0
 \end{cases}
-$$
+```
 
 **Understanding the derivative**:
 - **When z > 0**: Derivative = 1 (gradient flows through perfectly!)
@@ -446,12 +448,12 @@ $$
 - When you want fast training and good performance
 
 **Derivative**:
-$$
+```math
 \frac{d\text{ReLU}}{dz} = \begin{cases}
 1 & \text{if } z > 0 \\
 0 & \text{if } z \leq 0
 \end{cases}
-$$
+```
 
 **When to Use**:
 - **Default choice** for hidden layers
@@ -468,12 +470,12 @@ $$
 #### **3.2.4 Leaky ReLU**
 
 **Formula**:
-$$
+```math
 \text{Leaky ReLU}(z) = \begin{cases}
 z & \text{if } z > 0 \\
 \alpha z & \text{if } z \leq 0
 \end{cases}
-$$
+```
 
 Where $\alpha$ is a small constant (typically 0.01)
 
@@ -482,12 +484,12 @@ Where $\alpha$ is a small constant (typically 0.01)
 - Small gradient for negative values instead of zero
 
 **Derivative**:
-$$
+```math
 \frac{d\text{Leaky ReLU}}{dz} = \begin{cases}
 1 & \text{if } z > 0 \\
 \alpha & \text{if } z \leq 0
 \end{cases}
-$$
+```
 
 **When to Use**:
 - When you suspect dying ReLU is a problem
@@ -498,9 +500,9 @@ $$
 #### **3.2.5 Softmax (For Multi-Class Classification)**
 
 **Formula** (for output vector $z$):
-$$
+```math
 \text{softmax}(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{K} e^{z_j}}
-$$
+```
 
 **Breaking down EVERY symbol**:
 - **$z$** = Input vector of "logits" (raw scores), e.g., $z = [2.1, 1.0, 0.3]$
@@ -651,20 +653,20 @@ Input (3) → Hidden (4, ReLU) → Output (2, Softmax)
 - $y$ = output probabilities (size 2)
 
 **Step 1: Input to Hidden**
-$$
+```math
 z^{[1]} = W^{[1]} x + b^{[1]} \quad \text{(size 4)}
-$$
-$$
+```
+```math
 h = \text{ReLU}(z^{[1]}) \quad \text{(size 4)}
-$$
+```
 
 **Step 2: Hidden to Output**
-$$
+```math
 z^{[2]} = W^{[2]} h + b^{[2]} \quad \text{(size 2)}
-$$
-$$
+```
+```math
 y = \text{softmax}(z^{[2]}) \quad \text{(size 2)}
-$$
+```
 
 ### 5.3 Concrete Example
 
@@ -718,9 +720,9 @@ A **loss function** (or **cost function**) measures how "wrong" the network's pr
 **Use Case**: Regression problems (predicting continuous values like house prices, temperature, stock prices)
 
 **Formula**:
-$$
+```math
 L_{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
-$$
+```
 
 **Breaking down every symbol**:
 - **$L_{MSE}$** = Mean Squared Error loss value (single number)
@@ -779,9 +781,9 @@ RMSE = sqrt(MSE) = 13228.76  # On average, off by ~$13k
 **Use Case**: Binary classification (2 classes)
 
 **Formula**:
-$$
+```math
 L_{BCE} = -\frac{1}{n} \sum_{i=1}^{n} [y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i)]
-$$
+```
 
 **Breaking down EVERY symbol:**
 
@@ -876,9 +878,9 @@ BCE = (0.105 + 0.105 + 0.223 + 0.357) / 4 = 0.197
 **Use Case**: Multi-class classification (K classes, mutually exclusive)
 
 **Formula**:
-$$
+```math
 L_{CCE} = -\frac{1}{n} \sum_{i=1}^{n} \sum_{k=1}^{K} y_{i,k} \log(\hat{y}_{i,k})
-$$
+```
 
 **Breaking down EVERY symbol:**
 
@@ -1234,4 +1236,5 @@ If you can answer these confidently, you're ready for the code! 🚀
 ---
 
 **Next File**: Open `neural_network_from_scratch.py` to see these concepts in code!
+
 

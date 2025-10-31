@@ -261,6 +261,7 @@ $$\theta_{t+1} = \theta_t - v_t$$
 Or equivalently (different formulation):
 
 $$v_t = \beta v_{t-1} + (1 - \beta) \nabla L(\theta_t)$$
+
 $$\theta_{t+1} = \theta_t - \eta v_t$$
 
 Where:
@@ -302,6 +303,7 @@ The momentum coefficient $\beta$ controls how much history to keep:
 **Exponential moving average:**
 
 The velocity is an exponentially-weighted average:
+
 $$v_t = (1-\beta)\sum_{i=0}^{\infty} \beta^i \nabla L(\theta_{t-i})$$
 
 This means:
@@ -317,6 +319,7 @@ With $\beta=0.9$, we're averaging over roughly $\frac{1}{1-\beta} = 10$ steps.
 A clever improvement to momentum:
 
 $$v_t = \beta v_{t-1} + \eta \nabla L(\theta_t - \beta v_{t-1})$$
+
 $$\theta_{t+1} = \theta_t - v_t$$
 
 **Key difference:** Compute gradient at **lookahead position** $\theta_t - \beta v_{t-1}$
