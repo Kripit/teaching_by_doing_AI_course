@@ -3,9 +3,17 @@
 
 <div align="center">
 
+![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
+![NumPy](https://img.shields.io/badge/NumPy-from%20scratch-green.svg)
+![PyTorch](https://img.shields.io/badge/PyTorch-production-red.svg)
+![Status](https://img.shields.io/badge/Status-In%20Progress-yellow.svg)
+![License](https://img.shields.io/badge/License-MIT-purple.svg)
+
 **From Absolute Beginner → Production-Ready Deep Learning Engineer**
 
 *Master Deep Learning, Transformers, LLMs, Reinforcement Learning & Land Your Dream AI Job*
+
+⭐ **Star this repo if you find it helpful!** ⭐
 
 </div>
 
@@ -555,8 +563,38 @@ This course is **actively maintained** and updated with:
 - Industry best practices
 - Student feedback improvements
 
-**Last Updated**: November 2024
-**Version**: 1.0.0
+**Last Updated**: October 2025
+**Version**: 1.0.0 (Chapters 1-4 Complete)
+
+---
+
+## 📊 Course Progress
+
+### ✅ Completed Modules
+
+| Chapter | Status | Content | Lines of Code |
+|---------|--------|---------|---------------|
+| **Chapter 01: Neural Networks** | ✅ Complete | Theory + NumPy Implementation + MNIST Project | ~2,600 lines |
+| **Chapter 02: Backpropagation** | ✅ Complete | Theory + Custom Autograd + Chain Rule Project | ~1,900 lines |
+| **Chapter 03: Optimization** | ✅ Complete | SGD/Momentum/Adam + Visualizer Project | ~1,700 lines |
+| **Chapter 04: Regularization** | ✅ Complete | L1/L2/Dropout/BatchNorm + Overfit Detector | ~2,100 lines |
+
+**Total**: 15 files, ~28,000 words of theory, ~8,300 lines of code
+
+### 🚧 In Progress
+
+- Chapter 05: Convolutional Neural Networks (CNNs)
+- Chapter 06: Advanced CNNs & Transfer Learning
+- Chapter 07: Recurrent Neural Networks (RNNs)
+- Chapter 08: Sequence-to-Sequence Models
+
+### 📅 Coming Soon
+
+- Module 02: Transformers & Attention Mechanisms (6 chapters)
+- Module 03: Large Language Models (8 chapters)
+- Module 04: Reinforcement Learning (8 chapters)
+- Module 05: Advanced Topics (6 chapters)
+- Module 06: Interview Preparation (6 chapters)
 
 ---
 
@@ -570,6 +608,43 @@ You're about to embark on an incredible learning journey. By the end of this cou
 - ✅ **Career trajectory** toward ₹1 CR+ packages
 
 **Remember**: The goal isn't just to understand AI—it's to **build AI systems that solve real problems** and **land your dream job**.
+
+---
+
+## 🤝 Contributing
+
+This is an open-source educational project! Contributions are welcome:
+
+- 🐛 **Report bugs**: Open an issue
+- 💡 **Suggest improvements**: Submit a pull request
+- 📚 **Share resources**: Add to the learning materials
+- ⭐ **Star the repo**: Help others discover this course
+
+---
+
+## 📜 License
+
+This course is released under the **MIT License**. Feel free to use, modify, and share!
+
+---
+
+## 🙏 Acknowledgments
+
+This course is built with love for the AI community. Special thanks to:
+- The deep learning research community
+- Open-source contributors
+- Students who provided feedback
+- Everyone striving to learn AI from scratch
+
+---
+
+## 📧 Contact & Support
+
+- **Issues**: Open a GitHub issue
+- **Discussions**: Use GitHub Discussions
+- **Updates**: Watch this repo for new chapters
+
+**Happy Learning! Let's build something amazing together! 🚀**
 
 ---
 
