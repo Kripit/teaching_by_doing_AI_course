@@ -1,0 +1,59 @@
+# Module 01: Deep Learning Fundamentals - Requirements
+# =====================================================
+
+# Core numerical computing
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Deep learning frameworks
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Data manipulation
+pandas>=2.0.0
+
+# Machine learning utilities
+scikit-learn>=1.2.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.14.0
+
+# Progress bars
+tqdm>=4.65.0
+
+# Jupyter notebook support
+jupyter>=1.0.0
+ipykernel>=6.22.0
+ipywidgets>=8.0.0
+
+# TensorBoard for experiment tracking
+tensorboard>=2.13.0
+tensorboard-plugin-profile>=2.13.0
+
+# Utilities
+pillow>=9.5.0  # Image processing
+opencv-python>=4.7.0  # Computer vision
+h5py>=3.8.0  # HDF5 file format for saving models
+
+# Optional: For faster computations
+# numba>=0.57.0  # JIT compilation for NumPy
+# cupy-cuda11x>=12.0.0  # GPU-accelerated NumPy (requires CUDA)
+
+# Installation notes:
+# ===================
+# 
+# 1. Install PyTorch with CUDA support (if you have an NVIDIA GPU):
+#    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+#
+# 2. For CPU-only installation:
+#    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+#
+# 3. Install all other requirements:
+#    pip install -r requirements.txt
+#
+# 4. Verify installation:
+#    python -c "import torch; print(f'PyTorch version: {torch.__version__}')"
+#    python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
